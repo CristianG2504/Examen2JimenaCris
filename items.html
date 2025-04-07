@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista de Items</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="contenedor">
+  <h2>Elige un Item</h2>
+
+  <ul class="lista-items">
+    <li class="item" data-item="Primer Item" onclick="seleccionarItem(this)">
+      Primer Item <span class="check"></span>
+    </li>
+    <li class="item" data-item="Segundo Item" onclick="seleccionarItem(this)">
+      Segundo Item <span class="check"></span>
+    </li>
+    <li class="item" data-item="Tercer Item" onclick="seleccionarItem(this)">
+      Tercer Item <span class="check"></span>
+    </li>
+    <li class="item" data-item="Cuarto Item" onclick="seleccionarItem(this)">
+      Cuarto Item <span class="check"></span>
+    </li>
+    <li class="item" data-item="Quinto Item" onclick="seleccionarItem(this)">
+      Quinto Item <span class="check"></span>
+    </li>
+  </ul>
+</div>
+
+<script src="script.js"></script>
+<script>
+  // Cargar el ítem seleccionado al cargar la página
+  document.addEventListener('DOMContentLoaded', () => {
+    const itemSeleccionado = localStorage.getItem('itemSeleccionado');
+    if (itemSeleccionado) {
+      // Si hay un ítem seleccionado, lo marcamos
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        if (item.dataset.item === itemSeleccionado) {
+          item.querySelector('.check').textContent = "✔";
+        }
+      });
+    }
+  });
+
+  // Función para seleccionar un ítem
+  function seleccionarItem(elemento) {
+    // Eliminamos el check de todos los ítems
+    const checks = document.querySelectorAll('.check');
+    checks.forEach(check => check.textContent = "");
+
+    // Ponemos el check solo en el ítem clickeado
+    const check = elemento.querySelector('.check');
+    check.textContent = "✔";
+
+    // Guardamos el ítem seleccionado en el localStorage
+    const item = elemento.dataset.item;
+    localStorage.setItem('itemSeleccionado', item);
+
+    // Redirigimos a la página de ítem seleccionado
+    window.location.href = 'selected.html';
+  }
+</script>
+
+</body>
+</html>

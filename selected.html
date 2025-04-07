@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Item Seleccionado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="contenedor">
+  <h2>Item Seleccionado</h2>
+  <div class="caja-select" onclick="irAListaItems()">
+    <span id="itemSeleccionado">Seleccionar un Item</span>
+    <span class="flecha">
+      <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+      </svg>
+    </span>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+  const item = localStorage.getItem('itemSeleccionado') || 'Seleccionar un Item';
+  document.getElementById('itemSeleccionado').textContent = item;
+
+  function irAListaItems() {
+    window.location.href = 'items.html';
+  }
+</script>
+
+</body>
+</html>
